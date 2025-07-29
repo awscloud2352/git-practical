@@ -1,0 +1,4 @@
+provider "aws" {
+  region  = "us-east-1"           # Replace with your preferred AWS region
+  profile = "default"             # Optional: specify your AWS CLI profile
+}
