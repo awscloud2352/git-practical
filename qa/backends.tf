@@ -12,7 +12,7 @@ terraform {
 
 terraform {
   backend "s3" {
-    bucket = "qa-state-locking-bucket"
+    bucket = "aws-practical-001"
     key    = "qa.tfstate"
     region = "us-east-1"
     #dynamodb_table = "terraform-lock"
