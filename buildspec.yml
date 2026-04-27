@@ -27,7 +27,6 @@ phases:
     on-failure: ABORT
     commands:
       - terraform --version
-      - cd "$CODEBUILD_SRC_DIR/terraform-manifests/$SDLC_ENV"
       - terraform init
       - terraform validate
       - terraform plan
