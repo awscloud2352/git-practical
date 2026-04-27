@@ -33,7 +33,7 @@ phases:
     commands:
       - ls -lrt "$CODEBUILD_SRC_DIR/terraform-manifests"
       - terraform --version
-      - cd "$CODEBUILD_SRC_DIR/terraform-manifests/$SDLC_ENV"
+      #- cd "$CODEBUILD_SRC_DIR/terraform-manifests/$SDLC_ENV"
       - terraform init
       - terraform validate
       - terraform plan
