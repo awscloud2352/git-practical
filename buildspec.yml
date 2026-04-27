@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   variables:
-    SDLC_ENV: "dev"        # Override in CodeBuild environment variables (dev/qa/prod)
-    TF_COMMAND: "apply"    # Override in CodeBuild environment variables (apply/destroy)
+    SDLC_ENV: "dev"        # Override in CodeBuild env vars
+    TF_COMMAND: "apply"    # Override in CodeBuild env vars
     TERRAFORM_VERSION: "1.10.5"
 
 phases:
@@ -21,14 +21,13 @@ phases:
   pre_build:
     on-failure: ABORT
     commands:
-      - echo Terraform execution started on $(date)
+      - echo "terraform execution started on $(date)"
 
   build:
     on-failure: ABORT
     commands:
-      - echo Switching to environment: $SDLC_ENV
-      # Adjust this path to match your repo structure
-      - cd "$CODEBUILD_SRC_DIR/$SDLC_ENV"
+      - terraform --version
+      - cd "$CODEBUILD_SRC_DIR/terraform-manifests/$SDLC_ENV"
       - terraform init
       - terraform validate
       - terraform plan
@@ -37,4 +36,4 @@ phases:
   post_build:
     on-failure: CONTINUE
     commands:
-      - echo Terraform execution completed on $(date)
+      - echo "terraform execution completed on $(date)"
